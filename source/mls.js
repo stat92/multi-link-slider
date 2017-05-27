@@ -1,4 +1,4 @@
-var MultiLinkSlider = (function () {
+MultiLinkSlider = (function () {
 
 	function MultiLinkSlider (config) {
 		
@@ -25,7 +25,13 @@ var MultiLinkSlider = (function () {
 			return this.length
 		},
 
-		getTemplate: function(items) {
+		/**
+		 * Creates whole block of slider
+		 * 
+		 * @param {[object]} items 
+		 * @returns {dom}
+		 */
+		getBlock: function(items) {
 			var me = this,
 				div, ul;
 
@@ -38,19 +44,25 @@ var MultiLinkSlider = (function () {
 			div.appendChild(ul);
 
 			items.forEach(function (item) {
-				ul.appendChild(me.getLiTemplate(item))
+				ul.appendChild(me.getLiItem(item))
 			})
 
 			return div;
 		},
 
-		getLiTemplate: function (item) {
+		/**
+		 * Creates and returns the items li element. Binds listeners
+		 * 
+		 * @param {object} item 
+		 * @returns {domElement}
+		 */
+		getLiItem: function (item) {
 			var li = document.createElement('li'),
 				listeners = item['listeners']
 
 			li.className += ' mls-li mls-li-' + this.numb;
 
-			li.innerHTML = this.generateItem(item)
+			li.innerHTML = this.prepareTemplate(item)
 
 			if (listeners) 
 			{
@@ -66,7 +78,13 @@ var MultiLinkSlider = (function () {
 			return li;
 		},
 
-		generateItem: function (item) {
+		/**
+		 * Prepares the template with new values 
+		 * 
+		 * @param {object} item 
+		 * @returns {string}
+		 */
+		prepareTemplate: function (item) {
 			var temporary = this.itemsTemplate, key, value;
 
 			for (key in item)
@@ -84,6 +102,11 @@ var MultiLinkSlider = (function () {
 			return temporary;
 		},
 
+		/**
+		 * Gets amount of items that will be shown in the viewport
+		 * 
+		 * @returns {number}
+		 */
 		getAmountOfItemsToShow: function () {
 			var me = this,
 			    itemsToShow,
@@ -120,7 +143,7 @@ var MultiLinkSlider = (function () {
 				lis;
 				
 			me.length = items.length;
-			me.outerContainer.appendChild(me.getTemplate(items));
+			me.outerContainer.appendChild(me.getBlock(items));
 			
 			me.leftButton = me.createButton('left');
 			me.rightButton = me.createButton('right');
@@ -161,6 +184,11 @@ var MultiLinkSlider = (function () {
 			return div;
 		},
 
+		/**
+		 * Appends new items to the existing block
+		 * 
+		 * @param {[object]} items 
+		 */
 		append: function (items) {
 			var me = this,
 				temp = document.createElement('div'),
@@ -169,7 +197,7 @@ var MultiLinkSlider = (function () {
 			me.length += items.length;
 
 			items.forEach(function (item) {
-				ul.appendChild(me.getLiTemplate(item))
+				ul.appendChild(me.getLiItem(item))
 			})
 
 			ul.style.width = me.getUlWidth()+'px'
