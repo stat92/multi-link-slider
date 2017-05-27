@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded',function() {
 					   	birthday: 1732,
 					   	deathday: 1809,
 						listeners: {
-							click: function (item) {
+							click: function (item, evt) {
 								document.getElementById('composer').innerHTML = item.name + ' ' + item.surname
 							}
 						}
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded',function() {
 					   	birthday: 1818,
 					   	deathday: 1896,
 						listeners: {
-							click: function (item) {
+							click: function (item, evt) {
 								document.getElementById('composer').innerHTML = item.name + ' ' + item.surname
 							}
 						}
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded',function() {
 					   	birthday: 1840,
 					   	deathday: 1893,
 						listeners: {
-							click: function (item) {
+							click: function (item, evt) {
 								document.getElementById('composer').innerHTML = item.name + ' ' + item.surname
 							}
 						}
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded',function() {
 					   	birthday: 1844,
 					   	deathday: 1908,
 						listeners: {
-							click: function (item) {
+							click: function (item, evt) {
 								document.getElementById('composer').innerHTML = item.name + ' ' + item.surname
 							}
 						}
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded',function() {
 					   	compositionId: 1,
 					   	title: 'Composition 1',
 						listeners: {
-							click: function (item) {
+							click: function (item, evt) {
 								document.getElementById('composition').innerHTML = item.title
 							}
 						}
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded',function() {
 						compositionId: 1,
 					   	title: 'Composition 2',
 						listeners: {
-							click: function (item) {
+							click: function (item, evt) {
 								document.getElementById('composition').innerHTML = item.title
 							}
 						}
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded',function() {
 						compositionId: 1,
 					   	title: 'Composition 3',
 						listeners: {
-							click: function (item) {
+							click: function (item, evt) {
 								document.getElementById('composition').innerHTML = item.title
 							}
 						}
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded',function() {
 						compositionId: 1,
 					   	title: 'Composition 4',
 						listeners: {
-							click: function (item) {
+							click: function (item, evt) {
 								document.getElementById('composition').innerHTML = item.title
 							}
 						}
