@@ -138,48 +138,64 @@ MultiLinkSlider = (function () {
 			return 100/this.getCount();
 		},
 
+		/**
+		 * Creates whole block and renders it to the container. 
+		 * Use this method to remove all old items and to set news
+		 * 
+		 * @param {any} items 
+		 */
 		render: function (items) {
 			var me = this,
 				lis;
-				
+			
+			me.outerContainer.innerHTML = "";
+			me.whereIs = 0;
 			me.length = items.length;
-			me.outerContainer.appendChild(me.getBlock(items));
-			
-			me.leftButton = me.createButton('left');
-			me.rightButton = me.createButton('right');
 
-			me.leftButton.addEventListener('click', function () { me.move(-1); })
-			me.rightButton.addEventListener('click', function () { me.move(1); })
-			
-			lis = document.querySelectorAll('.mls-li-'+me.numb);
+			me.outerContainer.appendChild(me.getBlock(items));
 
 			document.querySelector('.mls-ul-'+me.numb).style.width = me.getUlWidth()+'px'
 			
-			lis.forEach(function(li) {
+			document.querySelectorAll('.mls-li-'+me.numb).forEach(function(li) {
 				li.style.width = me.getLiPercentWidth()+'%'
 			})
 
+			me.addButtons();
 			me.checkButtons();
 
-			window.addEventListener('resize', function()
-			{
-				var style = document.querySelector('.mls-ul-'+me.numb).style;
+			if (!me.created) {
+				me.created = true;
 
-				style.width = me.getUlWidth()+'px'
-				style.left = (me.whereIs*me.getLiWidth())+'px'
+				window.addEventListener('resize', function()
+				{
+					var style = document.querySelector('.mls-ul-'+me.numb).style;
 
-				me.checkButtons();
-			});
+					style.width = me.getUlWidth()+'px'
+					style.left = (me.whereIs*me.getLiWidth())+'px'
+
+					me.checkButtons();
+				});
+			}
+		},
+
+		addButtons: function () {
+			var me = this,
+				parent = document.querySelector('.mls-div-'+me.numb),
+				ul = document.querySelector('.mls-ul-'+me.numb);
+		
+			me.leftButton = me.createButton('left');
+			me.rightButton = me.createButton('right');
+
+			parent.insertBefore(me.rightButton, ul);
+			parent.insertBefore(me.leftButton, ul);
+
+			me.leftButton.addEventListener('click', function () { me.move(-1); })
+			me.rightButton.addEventListener('click', function () { me.move(1); })
 		},
 
 		createButton: function (direction) {
-			var div = document.createElement('div'),
-				parent = document.querySelector('.mls-div-'+this.numb),
-				ul = document.querySelector('.mls-ul-'+this.numb);
-
+			var div = document.createElement('div');
 			div.className += 'mls-button-'+direction;
-
-			parent.insertBefore(div, ul);
 
 			return div;
 		},
