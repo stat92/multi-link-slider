@@ -42,7 +42,7 @@ To the ```render``` function add your array of datasets. Dataset contains the li
 
 #### API
 
-```MultiLinkSlider``` provides next functions:
-```getCount()``` - to get amount of items
-```append(items)``` - to append new items to the existing slider
-```move(direction)``` - to slide (set direction -1 to go left, +1 to go right)
+```MultiLinkSlider``` provides next methods:
+<br>```getCount()``` - to get amount of items
+<br>```append(items)``` - to append new items to the existing slider
+<br>```move(direction)``` - to slide (set direction -1 to go left, +1 to go right)
