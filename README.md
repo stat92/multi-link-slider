@@ -9,7 +9,7 @@ compositionsTemplate = '<div class="compositions-data">'+
                         '</div>';
 ```
 
-Template may contain mustache on the curly braces ```{}``` that will be replaced by dataset after render
+Template may contain mustache in the curly braces ```{}``` that will be replaced by dataset after render
 
 #### 2. Create new object with the config
 ```
@@ -21,7 +21,7 @@ compositions = new MultiLinkSlider({
 	});
 ```
 
-```container``` is the dom element where to new slider will be rendered. ```template``` is the html string template of the items of slider. ```minWidth``` is the minimum width of the every item. If you set ```amountToShow``` value, ```minWidth``` will be ignored.
+```container``` is the dom element where to new slider will be rendered. ```template``` is the html string template that every item of the slider will implement. ```minWidth``` is the minimum width of the every item. If you set ```amountToShow```, ```minWidth``` will be ignored.
 
 #### 3. Render it with the dataset
 
@@ -34,9 +34,11 @@ compositions.render([{
             document.getElementById('composition').innerHTML = item.title // title is 'Composition 1'
         }
     }
-}]) 
+},
+...
+]) 
 ```
-To the ```render``` function add your array of datasets. Dataset contains the data that will replace mustaches and listeners. Listener takes dataset and event object. 
+To the ```render``` function add your array of datasets. Dataset contains the listeners and the data that will replace mustaches. Listener takes corresponding dataset and event object. 
 
 #### API
 
