@@ -14,19 +14,18 @@ Template may contain mustache in the curly braces ```{}``` that will be replaced
 #### 2. Create new object with the config
 ```
 compositions = new MultiLinkSlider({
-		container: document.getElementById('compositions'), 
 		template: compositionsTemplate, 
 		minWidth: 200,
         amountToShow: 2
 	});
 ```
 
-```container``` is the dom element where to new slider will be rendered. ```template``` is the html string template that every item of the slider will implement. ```minWidth``` is the minimum width of the every item. If you set ```amountToShow```, ```minWidth``` will be ignored.
+```template``` is the html string template that every item of the slider will implement. ```minWidth``` is the minimum width of the every item. If you set ```amountToShow```, ```minWidth``` will be ignored.
 
 #### 3. Render it with the dataset
 
 ```
-compositions.render([{ 
+compositions.render(document.getElementById('compositions'), [{ 
     compositionsId: 1,
     title: 'Composition 1',
     listeners: {
@@ -38,11 +37,12 @@ compositions.render([{
 ...
 ]) 
 ```
-To the ```render``` function add your array of datasets. Dataset contains the listeners and the data that will replace mustaches. Listener takes corresponding dataset and event object. 
+To the ```render``` function add the target container and the array of datasets. Dataset contains the listeners and the data that will replace mustaches. Listener takes corresponding dataset and event object. 
 
 #### API
 
 ```MultiLinkSlider``` provides next methods:
-<br>```getCount()``` - to get amount of items
+<br>```getLength()``` - to get amount of items
 <br>```append(items)``` - to append new items to the existing slider
 <br>```move(direction)``` - to slide (set direction -1 to go left, +1 to go right)
+<br>```replace(items)``` - to replace with new items

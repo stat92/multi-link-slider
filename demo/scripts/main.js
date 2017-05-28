@@ -1,20 +1,14 @@
 document.addEventListener('DOMContentLoaded',function() {
 
-	composersTemplate = '<div data-composerid="{composerId}" class="composers-item">'+
+	var composersTemplate = '<div data-composerid="{composerId}" class="composers-item">'+
 	                       '<img class="composers-img" src="{source}">'+
 	                       '<p class="composers-data">'+
 	                       		'<span>{name}</span><br><span>{surname}</span><br>'+
 	                       		'<span>{birthday}-{deathday}</span>'
 	                       '</p>'+
 	                    '</div>';
-
-	composers = new MultiLinkSlider({
-		container: document.getElementById('composers'), 
-		template: composersTemplate, 
-		minWidth: 200
-	});
-
-	composers.render([{
+	
+	var composersData = [{
 					   	name: 'Joseph',
 					   	surname: 'Haydn',
 					   	source: 'styles/img/Haydn.jpg',
@@ -65,21 +59,24 @@ document.addEventListener('DOMContentLoaded',function() {
 								document.getElementById('composer').innerHTML = item.name + ' ' + item.surname
 							}
 						}
-					}]);
+					}];
 
-
-
-	compositionsTemplate = '<div class="compositions-data">'+
-	                       		'<span data-compositionid="{compositionId}">{title}</span>'+
-	                    	'</div>';
-
-	compositions = new MultiLinkSlider({
-		container: document.getElementById('compositions'), 
-		template: compositionsTemplate, 
-		minWidth: 120
+	var composers = new MultiLinkSlider({
+		template: composersTemplate, 
+		minWidth: 200
 	});
 
-	compositions.render([{ 
+	composers.render(document.getElementById('composers'), composersData);
+
+
+
+
+
+	var compositionsTemplate = '<div class="compositions-data">'+
+	                       		'<span data-compositionid="{compositionId}">{title}</span>'+
+	                    	'</div>';
+	
+	var compositionsData = [{ 
 					   	compositionId: 1,
 					   	title: 'Composition 1',
 						listeners: {
@@ -89,7 +86,7 @@ document.addEventListener('DOMContentLoaded',function() {
 						}
 					}, 
 					{
-						compositionId: 1,
+						compositionId: 2,
 					   	title: 'Composition 2',
 						listeners: {
 							click: function (item, evt) {
@@ -98,7 +95,7 @@ document.addEventListener('DOMContentLoaded',function() {
 						}
 					},
 					{
-						compositionId: 1,
+						compositionId: 3,
 					   	title: 'Composition 3',
 						listeners: {
 							click: function (item, evt) {
@@ -107,12 +104,19 @@ document.addEventListener('DOMContentLoaded',function() {
 						}
 					},
 					{
-						compositionId: 1,
+						compositionId: 4,
 					   	title: 'Composition 4',
 						listeners: {
 							click: function (item, evt) {
 								document.getElementById('composition').innerHTML = item.title
 							}
 						}
-					}]);
+					}];
+
+	var compositions = new MultiLinkSlider({
+		template: compositionsTemplate, 
+		minWidth: 120
+	});
+
+	compositions.render(document.getElementById('compositions'), compositionsData);
 })
