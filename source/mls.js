@@ -20,6 +20,11 @@ MultiLinkSlider = (function () {
 		
 		constructor: MultiLinkSlider,
 
+		/**
+		 * Get amount of items
+		 * 
+		 * @returns {number}
+		 */
 		getLength: function () {
 			return this.length;
 		},
@@ -205,11 +210,11 @@ MultiLinkSlider = (function () {
 			me.leftButton = me.createButton('left');
 			me.rightButton = me.createButton('right');
 
+			me.leftButton.addEventListener('click', me.move.bind(me, -1));
+			me.rightButton.addEventListener('click', me.move.bind(me, 1));
+
 			me.block.insertBefore(me.rightButton, ul);
 			me.block.insertBefore(me.leftButton, ul);
-
-			me.leftButton.addEventListener('click', function () { me.move(-1); });
-			me.rightButton.addEventListener('click', function () { me.move(1); });
 		},
 
 		createButton: function (direction) {
@@ -238,6 +243,11 @@ MultiLinkSlider = (function () {
 			me.checkButtons();
 		},
 
+		/**
+		 * Move slider
+		 * 
+		 * @param {number} direction 
+		 */
 		move: function (direction) {
 			var me = this;
 
@@ -257,12 +267,14 @@ MultiLinkSlider = (function () {
 		},
 
 		normalizeWidth: function () {
-			var me = this;
+			var me = this,
+				ulWidth = me.getUlWidth(),
+				liWidth = me.getLiPercentWidth();
 
-			me.block.querySelector('.mls-ul').style.width = me.getUlWidth()+'px';
+			me.block.querySelector('.mls-ul').style.width = ulWidth+'px';
 			
 			me.block.querySelectorAll('.mls-li').forEach(function(li) {
-				li.style.width = me.getLiPercentWidth()+'%';
+				li.style.width = liWidth+'%';
 			})
 		}
 	}

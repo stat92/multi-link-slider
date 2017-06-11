@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded',function() {
 
 	var compositions = new MultiLinkSlider({
 		template: compositionsTemplate, 
-		minWidth: 120
+		amountToShow: 2
 	});
 
 	compositions.render(document.getElementById('compositions'), compositionsData);
